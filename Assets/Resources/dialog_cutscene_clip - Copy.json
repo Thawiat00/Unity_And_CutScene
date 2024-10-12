@@ -1,0 +1,83 @@
+{
+    "break_choice_scene_1_1": [
+        {
+            "option_call_all": [
+                {
+                    "option_call_option_1": [
+                        "I can explain, but not now.",
+                        "This moment is dangerous"
+                    ],
+                    "option_call_option_2": [
+                        "You are my important person.",
+                        "I can explain you but not now"
+                    ],
+                    "option_call_option_3": [
+                        "Stop acting like that, and come with me!!!",
+                        "I need to bring you quickly"
+                    ]
+                }
+            ],
+            "option_call_all_answer": [
+                {
+                    "option_answer_option_1": [
+                        "do you want to belive this",
+                        "Tsk!!",
+                        "okey but",
+                        "next time you to tell me",
+                        "Everything!!!"
+                    ],
+                    "option_answer_option_2": [
+                        "Hit!!"
+                    ],
+                    "option_answer_option_3": [
+                        "Hit!!"
+                    ]
+                }
+            ]
+        }
+    ],
+    "break_choice_scene_1_2": [
+        {
+            "option_call_all": [
+                {
+                    "option_call_option_1": [
+                        "call_option_1"
+                    ],
+                    "option_call_option_2": [
+                        "call_option_2"
+                    ],
+                    "option_call_option_3": [
+                        "call_option_3"
+                    ]
+                }
+            ],
+            "option_call_all_answer": [
+                {
+                    "option_answer_option_1": [
+                        "answer_option_1"
+                    ],
+                    "option_answer_option_2": [
+                        "answer_option_2"
+                    ],
+                    "option_answer_option_3": [
+                        "answer_option_3"
+                    ]
+                }
+            ]
+        }
+    ],
+    "dialog_cs_OC": [
+        {
+            "girl": "You agian? what worng with you",
+            "boy": "Coincidentally, my way home is this way.",
+            "girl": "Tsk!! anyway, Why are you hiding me? ,I'm see you always behide me",
+            "boy": "It's not like that, that is... ",
+            "girl": "That is... if you don't tell me nicely. I will sure call the police,got it!",
+            "cutscene_choice": [
+                "break_choice_scene_1_1",
+                "break_choice_scene_1_2"
+            ],
+            "End_dialog": "End"
+        }
+    ],
+}
