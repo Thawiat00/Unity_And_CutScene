@@ -1,0 +1,11 @@
+{
+    "dialog_cs_c": [
+        {
+            "boy": "Are You Hybrid Demon?",
+            "girl": "Yes I'm ,Now you found my secret, I'll not let you go",
+            "boy": "But it's can't be true ,I'm not believe ,You lie",
+            "girl": "I will show you",
+            "cutscene_clip": "demo_clip"
+        }
+    ]
+}

@@ -1,0 +1,12 @@
+{
+    "dialog_cs_rt": [
+        {
+            "girl": "Now you can not go anywhere ",
+            "boy": "listen it's not be true",
+            "boy": "Let's me prove myself, but now left me alone ",
+            "girl": "Enoght!! , I'm don't want to do this but....I'll caught you back to prison first!",
+            "boy": "phew... it's not can't help",
+            "cutscene_realtime": "demo_realtime"
+        }
+    ]
+}
