@@ -300,6 +300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dff0e017db5e9b14dafa7f3d80f066f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogText: {fileID: 715870053}
   button1: {fileID: 7754720050681957216}
   button2: {fileID: 4805124230213391148}
   button3: {fileID: 5234211188936699582}

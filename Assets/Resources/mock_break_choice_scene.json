@@ -4,14 +4,17 @@
             "option_call_all": [
                 {
                     "option_call_option_1": [
+                        "[Use Your Reason]",
                         "I can explain, but not now.",
                         "This moment is dangerous"
                     ],
                     "option_call_option_2": [
+                        "[Use Your Feelings]",
                         "You are my important person.",
                         "I can explain you but not now"
                     ],
                     "option_call_option_3": [
+                        "[Use Your Force]",
                         "Stop acting like that, and come with me!!!",
                         "I need to bring you quickly"
                     ]
@@ -20,17 +23,17 @@
             "option_call_all_answer": [
                 {
                     "option_answer_option_1": [
-                        "do you want to belive this",
+                        "do I have to belive this",
                         "Tsk!!",
                         "okey but",
                         "next time you to tell me",
                         "Everything!!!"
                     ],
                     "option_answer_option_2": [
-                        "Hit!!"
+                        "Hit_2!!"
                     ],
                     "option_answer_option_3": [
-                        "Hit!!"
+                        "Hit_3!!"
                     ]
                 }
             ]
