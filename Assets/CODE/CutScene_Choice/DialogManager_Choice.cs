@@ -1,176 +1,105 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
-// ?????? DialogManager ??????????????
-public class DialogManager_Choice : MonoBehaviour
+public class DialogManager_choice : MonoBehaviour
 {
-    [Header("UI References")]
-    [SerializeField] private TextMeshProUGUI dialogText;
-    [SerializeField] private TextMeshProUGUI characterNameText;
-    [SerializeField] private GameObject choicePanel;
-    [SerializeField] private Button[] choiceButtons;
-    [SerializeField] private TextMeshProUGUI[] choiceTexts;
-    [SerializeField] private GameObject continueIcon;
+    // Structs ???? Classes ???????????????? JSON
+    [System.Serializable]
+    public class Dialog_choice
+    {
+        public string girl;
+        public string boy;
+        public List<string> cutscene_choice;
+        public string End_dialog;
+    }
 
-    [Header("Dialog Settings")]
-    [SerializeField] private TextAsset jsonFile;
-    [SerializeField] private float textSpeed = 0.05f;
+    [System.Serializable]
+    public class Root_choice
+    {
+        public List<Dialog_choice> dialog_cs_OC;
+    }
 
-    private DialogData_Choice dialogData;
-    private int currentDialogIndex = 0;
-    private bool isTyping = false;
-    private DialogScene_Choice currentScene;
-    private Coroutine typingCoroutine;
+    private Root_choice dialogData_choice;
+    private List<string> dialogQueue_choice = new List<string>(); // ?????????????????????????
+    private int dialogIndex = 0; // ????????????????????
+
+    public TextMeshProUGUI dialogText; // ?????????????????????? Unity UI
 
     void Start()
     {
-        try
-        {
-            // Add debug logging
-            string jsonText = jsonFile.text;
-            JsonHelper_Choice.DebugLogJson(jsonText);
-
-            // Parse JSON
-            dialogData = JsonUtility.FromJson<DialogData_Choice>(jsonText);
-
-            if (dialogData == null)
-            {
-                Debug.LogError("Failed to parse JSON: result is null");
-                return;
-            }
-
-            // Initialize UI
-            choicePanel.SetActive(false);
-            continueIcon.SetActive(false);
-            StartDialog();
-        }
-        catch (Exception e)
-        {
-            Debug.LogError($"Error in Start: {e.Message}\n{e.StackTrace}");
-        }
+        LoadDialogData_choice();
+        PrepareDialogQueue_choice(); // ??????????????????????????? JSON
+        ShowNextDialog(); // ???????????????????
     }
+
 
     void Update()
     {
+        // ??????????????????? Spacebar ???????
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            OnSpacebarPressed();
+            ShowNextDialog(); // ??????????????????????? Spacebar
         }
     }
 
-    void OnSpacebarPressed()
+    void LoadDialogData_choice()
     {
-        if (choicePanel.activeSelf)
-            return;
+        // ???? JSON ??????? Resources ????????????
+        TextAsset jsonFile = Resources.Load<TextAsset>("dialog_cutscene_choice");
 
-        if (isTyping)
+        if (jsonFile != null)
         {
-            if (typingCoroutine != null)
-                StopCoroutine(typingCoroutine);
-            CompleteCurrentDialog();
+            string jsonContent = jsonFile.text;
+            dialogData_choice = JsonUtility.FromJson<Root_choice>(jsonContent);
+            Debug.Log("JSON Loaded Successfully from Resources");
         }
         else
         {
-            currentDialogIndex++;
-            ShowCurrentDialog();
+            Debug.LogError("Cannot find JSON file in Resources folder");
         }
     }
 
-    void StartDialog()
+
+    void PrepareDialogQueue_choice()
     {
-        if (dialogData.dialog_cs_OC != null && dialogData.dialog_cs_OC.Count > 0)
+        // ????????????????? boy ??? girl ?????????? JSON
+        if (dialogData_choice != null)
         {
-            currentScene = dialogData.dialog_cs_OC[0];
-            ShowCurrentDialog();
+            foreach (var dialog in dialogData_choice.dialog_cs_OC)
+            {
+                if (!string.IsNullOrEmpty(dialog.girl))
+                {
+                    dialogQueue_choice.Add(dialog.girl);
+                }
+
+                if (!string.IsNullOrEmpty(dialog.boy))
+                {
+                    dialogQueue_choice.Add(dialog.boy);
+                }
+            }
         }
     }
 
-    void ShowCurrentDialog()
+    // ???????????????????????????????????
+    void ShowNextDialog()
     {
-        if (currentDialogIndex >= 4)
+        if (dialogQueue_choice.Count > 0 && dialogIndex < dialogQueue_choice.Count)
         {
-            ShowChoices();
-            return;
-        }
-
-        string currentText = "";
-        string characterName = "";
-
-        if (currentDialogIndex % 2 == 0)
-        {
-            currentText = currentScene.girl;
-            characterName = "Girl";
+            dialogText.text = dialogQueue_choice[dialogIndex]; // ??????????????????????????
+            dialogIndex++; // ?????????????????
         }
         else
         {
-            currentText = currentScene.boy;
-            characterName = "Boy";
+            Debug.Log("End of dialog");
+            dialogText.text = "End of dialog"; // ?????????????????????
         }
-
-        characterNameText.text = characterName;
-        continueIcon.SetActive(false);
-
-        if (typingCoroutine != null)
-            StopCoroutine(typingCoroutine);
-        typingCoroutine = StartCoroutine(TypeText(currentText));
     }
 
-    void CompleteCurrentDialog()
+    // ???????????????????????????????????????????????????????????
+    public void OnNextButtonClicked()
     {
-        isTyping = false;
-        if (currentDialogIndex % 2 == 0)
-        {
-            dialogText.text = currentScene.girl;
-        }
-        else
-        {
-            dialogText.text = currentScene.boy;
-        }
-        continueIcon.SetActive(true);
-    }
-
-    IEnumerator TypeText(string text)
-    {
-        isTyping = true;
-        dialogText.text = "";
-
-        foreach (char c in text.ToCharArray())
-        {
-            dialogText.text += c;
-            yield return new WaitForSeconds(textSpeed);
-        }
-
-        isTyping = false;
-        continueIcon.SetActive(true);
-    }
-
-    void ShowChoices()
-    {
-        continueIcon.SetActive(false);
-        choicePanel.SetActive(true);
-
-        var choices = dialogData.break_choice_scene_1_1[0].option_call_all[0];
-
-        SetupChoice(0, choices.option_call_option_1[0], dialogData.break_choice_scene_1_1[0].option_call_all_answer[0].option_answer_option_1);
-        SetupChoice(1, choices.option_call_option_2[0], dialogData.break_choice_scene_1_1[0].option_call_all_answer[0].option_answer_option_2);
-        SetupChoice(2, choices.option_call_option_3[0], dialogData.break_choice_scene_1_1[0].option_call_all_answer[0].option_answer_option_3);
-    }
-
-    void SetupChoice(int index, string choiceText, List<string> answers)
-    {
-        choiceTexts[index].text = choiceText;
-        choiceButtons[index].onClick.RemoveAllListeners();
-        choiceButtons[index].onClick.AddListener(() => OnChoiceSelected(answers));
-    }
-
-    void OnChoiceSelected(List<string> answers)
-    {
-        choicePanel.SetActive(false);
-        characterNameText.text = "Response";
-        StartCoroutine(TypeText(answers[0]));
+        ShowNextDialog();
     }
 }
