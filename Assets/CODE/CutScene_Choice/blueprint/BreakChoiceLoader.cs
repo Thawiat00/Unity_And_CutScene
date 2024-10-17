@@ -1,55 +1,81 @@
-using UnityEngine;
 using System.Collections.Generic;
-
+using UnityEngine;
+using UnityEngine.UI;
 
 public class BreakChoiceLoader : MonoBehaviour
 {
-    private BreakChoiceData breakChoiceData;
+    [System.Serializable]
+    public class OptionCall
+    {
+        public List<string> option_call_option_1;
+        public List<string> option_call_option_2;
+        public List<string> option_call_option_3;
+    }
+
+    [System.Serializable]
+    public class BreakChoiceScene
+    {
+        public List<OptionCall> option_call_all;
+    }
+
+    [System.Serializable]
+    public class BreakChoiceData
+    {
+        public List<BreakChoiceScene> break_choice_scene_1_1;
+    }
+
+    private BreakChoiceData breakChoiceSceneData;
+
+    public Button button1; // Drag your Button 1 here in the inspector
+    public Button button2; // Drag your Button 2 here in the inspector
+    public Button button3; // Drag your Button 3 here in the inspector
 
     void Start()
     {
         LoadBreakChoiceScene();
+        ShowOptionButtons();
     }
 
     void LoadBreakChoiceScene()
     {
+        // Load your JSON data from the Resources folder
         TextAsset jsonFile = Resources.Load<TextAsset>("mock_break_choice_scene");
-
         if (jsonFile != null)
         {
-            breakChoiceData = JsonUtility.FromJson<BreakChoiceData>(jsonFile.text);
-            Debug.Log("Data loaded successfully!");
-            ShowOptionCallAll();
+            breakChoiceSceneData = JsonUtility.FromJson<BreakChoiceData>(jsonFile.text);
+            Debug.Log("Break choice scene data loaded successfully.");
         }
         else
         {
-            Debug.LogError("Failed to load JSON! Please check the file name and Resources folder.");
+            Debug.LogError("Failed to load break choice scene data.");
         }
     }
 
-    void ShowOptionCallAll()
+    void ShowOptionButtons()
     {
-        if (breakChoiceData.break_choice_scene_1_1.Count > 0)
+        if (breakChoiceSceneData != null && breakChoiceSceneData.break_choice_scene_1_1.Count > 0)
         {
-            var scene1 = breakChoiceData.break_choice_scene_1_1[0];
-            foreach (var option in scene1.option_call_all)
-            {
-                Debug.Log("Option Call Option 1: " + string.Join(", ", option.option_call_option_1));
-                Debug.Log("Option Call Option 2: " + string.Join(", ", option.option_call_option_2));
-                Debug.Log("Option Call Option 3: " + string.Join(", ", option.option_call_option_3));
-            }
+            var optionCall = breakChoiceSceneData.break_choice_scene_1_1[0].option_call_all[0]; // Get the first set of options
 
-            foreach (var answer in scene1.option_call_all_answer)
-            {
-                Debug.Log("Answer Option 1: " + string.Join(", ", answer.option_answer_option_1));
-                Debug.Log("Answer Option 2: " + string.Join(", ", answer.option_answer_option_2));
-                Debug.Log("Answer Option 3: " + string.Join(", ", answer.option_answer_option_3));
-            }
+            // Check if options are available and assign them to buttons
+            if (optionCall.option_call_option_1.Count > 0)
+                button1.GetComponentInChildren<Text>().text = optionCall.option_call_option_1[0];
+            else
+                Debug.LogWarning("No option_call_option_1 data found.");
+
+            if (optionCall.option_call_option_2.Count > 0)
+                button2.GetComponentInChildren<Text>().text = optionCall.option_call_option_2[0];
+            else
+                Debug.LogWarning("No option_call_option_2 data found.");
+
+            if (optionCall.option_call_option_3.Count > 0)
+                button3.GetComponentInChildren<Text>().text = optionCall.option_call_option_3[0];
+            else
+                Debug.LogWarning("No option_call_option_3 data found.");
         }
         else
         {
-            Debug.LogWarning("No break_choice_scene_1_1 data found.");
+            Debug.LogWarning("No break_choice_scene_1_1 data found in breakChoiceSceneData.");
         }
     }
 }
-
