@@ -43,11 +43,22 @@ public class BreakChoiceLoader : MonoBehaviour
     public Button button3;
 
     private OptionCall currentOptionCall;
+    private int currentOptionIndex; // ??????????????????????????????????
+    private int currentSentenceIndex; // ???????????????
 
     void Start()
     {
         LoadBreakChoiceScene();
         ShowOptionButtons();
+    }
+
+    void Update()
+    {
+        // ???????????? Spacebar
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            ShowNextSentence(); // ???????????????????????????????
+        }
     }
 
     void LoadBreakChoiceScene()
@@ -70,66 +81,74 @@ public class BreakChoiceLoader : MonoBehaviour
         {
             currentOptionCall = breakChoiceSceneData.break_choice_scene_1_1[0].option_call_all[0];
 
-            if (currentOptionCall.option_call_option_1.Count > 0)
-            {
-                button1.GetComponentInChildren<Text>().text = currentOptionCall.option_call_option_1[0];
-                button1.onClick.AddListener(() => HandleOptionSelected(1));
-            }
-
-            if (currentOptionCall.option_call_option_2.Count > 0)
-            {
-                button2.GetComponentInChildren<Text>().text = currentOptionCall.option_call_option_2[0];
-                button2.onClick.AddListener(() => HandleOptionSelected(2));
-            }
-
-            if (currentOptionCall.option_call_option_3.Count > 0)
-            {
-                button3.GetComponentInChildren<Text>().text = currentOptionCall.option_call_option_3[0];
-                button3.onClick.AddListener(() => HandleOptionSelected(3));
-            }
+            // ???????????
+            SetupButton(button1, currentOptionCall.option_call_option_1, 0, 1);
+            SetupButton(button2, currentOptionCall.option_call_option_2, 1, 2);
+            SetupButton(button3, currentOptionCall.option_call_option_3, 2, 3);
+        }
+        else
+        {
+            Debug.LogWarning("No break_choice_scene_1_1 data found in breakChoiceSceneData.");
         }
     }
 
-    void HandleOptionSelected(int optionNumber)
+    void SetupButton(Button button, List<string> options, int optionIndex, int buttonIndex)
     {
-        // ?????????????????????????????
-        HideButtons();
-
-        // ????????????? 2 ??????????????????????
-        ShowSecondSentence(optionNumber);
+        if (options.Count > 0)
+        {
+            button.GetComponentInChildren<Text>().text = options[0];
+            button.onClick.AddListener(() => HandleOptionSelected(optionIndex));
+        }
+        else
+        {
+            Debug.LogWarning($"No option_call_option_{buttonIndex} data found.");
+        }
     }
 
-    void ShowSecondSentence(int optionNumber)
+    void HandleOptionSelected(int optionIndex)
     {
-        string secondSentence = "";
+        currentOptionIndex = optionIndex; // ????????????????????????????
+        currentSentenceIndex = 1; // ???????????????????????????? 2
+        ShowNextSentence();
+        HideButtons(); // ?????????????????????????
+    }
 
-        switch (optionNumber)
+    void ShowNextSentence()
+    {
+        string nextSentence = "";
+
+        // ??????????????????????????????????????
+        switch (currentOptionIndex)
         {
-            case 1:
-                if (currentOptionCall.option_call_option_1.Count > 1)
+            case 0:
+                if (currentSentenceIndex < currentOptionCall.option_call_option_1.Count)
                 {
-                    secondSentence = currentOptionCall.option_call_option_1[1]; // ????????????? 2
+                    nextSentence = currentOptionCall.option_call_option_1[currentSentenceIndex];
+                    currentSentenceIndex++;
+                }
+                break;
+            case 1:
+                if (currentSentenceIndex < currentOptionCall.option_call_option_2.Count)
+                {
+                    nextSentence = currentOptionCall.option_call_option_2[currentSentenceIndex];
+                    currentSentenceIndex++;
                 }
                 break;
             case 2:
-                if (currentOptionCall.option_call_option_2.Count > 1)
+                if (currentSentenceIndex < currentOptionCall.option_call_option_3.Count)
                 {
-                    secondSentence = currentOptionCall.option_call_option_2[1];
-                }
-                break;
-            case 3:
-                if (currentOptionCall.option_call_option_3.Count > 1)
-                {
-                    secondSentence = currentOptionCall.option_call_option_3[1];
+                    nextSentence = currentOptionCall.option_call_option_3[currentSentenceIndex];
+                    currentSentenceIndex++;
                 }
                 break;
         }
 
-        dialogText.text = secondSentence; // ??????????????? dialogText
-        Debug.Log($"Second sentence displayed: {secondSentence}");
+        // ????????????? dialogText
+        dialogText.text = nextSentence;
+        Debug.Log($"Displayed sentence: {nextSentence}");
     }
 
-    // ??????????????
+    // ????????????????????????????
     void HideButtons()
     {
         button1.gameObject.SetActive(false);

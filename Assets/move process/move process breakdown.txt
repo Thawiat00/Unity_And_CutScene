@@ -67,11 +67,12 @@
           
           -ทำระบบ กด button ตอบ แล้ว setactive false หมดเลย 1,2,3 (clear)
           
-          -ตรง dialogtext ระบบมันแสดง  option_call_all  กับ option_answer_all พร้อมกัน อยากให้แสดงแค่ option_call_all   ก่อน
+          -ตรง dialogtext ระบบมันแสดง  option_call_all  กับ option_answer_all พร้อมกัน อยากให้แสดงแค่ option_call_all   ก่อน (clear)
 
 
-         1.8.1 -ทำระบบ ให้เลือกแสดงข้อความตั้งประโยคที่ 2 ของ option_call_all ไปก่อน จนจบ
-         1.8.2 -แล้วค่อยเริ่มใหม่เป็น  option_answer_all ตั้งแต่ต้นจนจบประโยคทั้งหมด
+         1.8.1 -ทำระบบ ให้เลือกแสดงข้อความตั้งประโยคที่ 2 ของ option_call_all ไปก่อน จนจบ (clear)
+         1.8.2 -ทำระบบ กด spacebar เพื่อแสดงไปยังประโยคต่อไป
+         1.8.3 -แล้วค่อยเริ่มใหม่เป็น  option_answer_all ตั้งแต่ต้นจนจบประโยคทั้งหมด 
 
 
 
