@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,7 +26,7 @@ public class BreakChoiceLoader : MonoBehaviour
     public class BreakChoiceScene
     {
         public List<OptionCall> option_call_all;
-        public List<OptionAnswer> option_call_all_answer; // Added to hold answers
+        public List<OptionAnswer> option_call_all_answer;
     }
 
     [System.Serializable]
@@ -37,9 +38,11 @@ public class BreakChoiceLoader : MonoBehaviour
     private BreakChoiceData breakChoiceSceneData;
 
     public TextMeshProUGUI dialogText;
-    public Button button1; // Drag your Button 1 here in the inspector
-    public Button button2; // Drag your Button 2 here in the inspector
-    public Button button3; // Drag your Button 3 here in the inspector
+    public Button button1;
+    public Button button2;
+    public Button button3;
+
+    private OptionCall currentOptionCall;
 
     void Start()
     {
@@ -49,7 +52,6 @@ public class BreakChoiceLoader : MonoBehaviour
 
     void LoadBreakChoiceScene()
     {
-        // Load your JSON data from the Resources folder
         TextAsset jsonFile = Resources.Load<TextAsset>("mock_break_choice_scene");
         if (jsonFile != null)
         {
@@ -66,37 +68,73 @@ public class BreakChoiceLoader : MonoBehaviour
     {
         if (breakChoiceSceneData != null && breakChoiceSceneData.break_choice_scene_1_1.Count > 0)
         {
-            var optionCall = breakChoiceSceneData.break_choice_scene_1_1[0].option_call_all[0]; // Get the first set of options
-            var optionAnswers = breakChoiceSceneData.break_choice_scene_1_1[0].option_call_all_answer[0]; // Get the first set of answers
+            currentOptionCall = breakChoiceSceneData.break_choice_scene_1_1[0].option_call_all[0];
 
-            // Set button texts and add listeners
-            SetButton(button1, optionCall.option_call_option_1, optionAnswers.option_answer_option_1);
-            SetButton(button2, optionCall.option_call_option_2, optionAnswers.option_answer_option_2);
-            SetButton(button3, optionCall.option_call_option_3, optionAnswers.option_answer_option_3);
-        }
-        else
-        {
-            Debug.LogWarning("No break_choice_scene_1_1 data found in breakChoiceSceneData.");
+            if (currentOptionCall.option_call_option_1.Count > 0)
+            {
+                button1.GetComponentInChildren<Text>().text = currentOptionCall.option_call_option_1[0];
+                button1.onClick.AddListener(() => HandleOptionSelected(1));
+            }
+
+            if (currentOptionCall.option_call_option_2.Count > 0)
+            {
+                button2.GetComponentInChildren<Text>().text = currentOptionCall.option_call_option_2[0];
+                button2.onClick.AddListener(() => HandleOptionSelected(2));
+            }
+
+            if (currentOptionCall.option_call_option_3.Count > 0)
+            {
+                button3.GetComponentInChildren<Text>().text = currentOptionCall.option_call_option_3[0];
+                button3.onClick.AddListener(() => HandleOptionSelected(3));
+            }
         }
     }
 
-    void SetButton(Button button, List<string> optionCalls, List<string> optionAnswers)
+    void HandleOptionSelected(int optionNumber)
     {
-        if (optionCalls.Count > 0 && optionAnswers.Count > 0)
-        {
-            button.GetComponentInChildren<Text>().text = optionCalls[0]; // Show the first option
-            button.onClick.RemoveAllListeners(); // Remove existing listeners to avoid duplicates
-            button.onClick.AddListener(() => ShowResponse(optionAnswers[0])); // Set response
-        }
-        else
-        {
-            Debug.LogWarning($"No data found for button: {button.name}.");
-        }
+        // ?????????????????????????????
+        HideButtons();
+
+        // ????????????? 2 ??????????????????????
+        ShowSecondSentence(optionNumber);
     }
 
-    void ShowResponse(string answer)
+    void ShowSecondSentence(int optionNumber)
     {
-        dialogText.text = answer; // Show the selected answer in the dialog text
-        Debug.Log($"Response displayed: {dialogText.text}");
+        string secondSentence = "";
+
+        switch (optionNumber)
+        {
+            case 1:
+                if (currentOptionCall.option_call_option_1.Count > 1)
+                {
+                    secondSentence = currentOptionCall.option_call_option_1[1]; // ????????????? 2
+                }
+                break;
+            case 2:
+                if (currentOptionCall.option_call_option_2.Count > 1)
+                {
+                    secondSentence = currentOptionCall.option_call_option_2[1];
+                }
+                break;
+            case 3:
+                if (currentOptionCall.option_call_option_3.Count > 1)
+                {
+                    secondSentence = currentOptionCall.option_call_option_3[1];
+                }
+                break;
+        }
+
+        dialogText.text = secondSentence; // ??????????????? dialogText
+        Debug.Log($"Second sentence displayed: {secondSentence}");
+    }
+
+    // ??????????????
+    void HideButtons()
+    {
+        button1.gameObject.SetActive(false);
+        button2.gameObject.SetActive(false);
+        button3.gameObject.SetActive(false);
+        Debug.Log("Buttons are now hidden.");
     }
 }
