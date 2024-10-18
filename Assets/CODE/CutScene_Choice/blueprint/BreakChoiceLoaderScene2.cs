@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class BreakChoiceLoader : MonoBehaviour
+public class BreakChoiceLoaderScene2 : MonoBehaviour
 {
     [System.Serializable]
     public class OptionCall
@@ -32,7 +32,6 @@ public class BreakChoiceLoader : MonoBehaviour
     [System.Serializable]
     public class BreakChoiceData
     {
-        public List<BreakChoiceScene> break_choice_scene_1_1;
         public List<BreakChoiceScene> break_choice_scene_1_2;
     }
 
@@ -52,8 +51,6 @@ public class BreakChoiceLoader : MonoBehaviour
     private bool showingOptionCalls = false; // Track whether we are showing option calls
     private int selectedOption = 0; // Track the selected option
 
-    private int currentScene = 1; // Track the current scene (1 or 2)
-
     void Start()
     {
         LoadBreakChoiceScene();
@@ -66,58 +63,42 @@ public class BreakChoiceLoader : MonoBehaviour
         if (jsonFile != null)
         {
             breakChoiceSceneData = JsonUtility.FromJson<BreakChoiceData>(jsonFile.text);
-            Debug.Log("Break choice scene data loaded successfully.");
+            Debug.Log("Break choice scene 1_2 data loaded successfully.");
         }
         else
         {
-            Debug.LogError("Failed to load break choice scene data.");
+            Debug.LogError("Failed to load break choice scene 1_2 data.");
         }
     }
 
     void ShowOptionButtons()
     {
-        if (currentScene == 1 && breakChoiceSceneData != null && breakChoiceSceneData.break_choice_scene_1_1.Count > 0)
-        {
-            currentOptionCall = breakChoiceSceneData.break_choice_scene_1_1[0].option_call_all[0];
-            currentOptionAnswer = breakChoiceSceneData.break_choice_scene_1_1[0].option_call_all_answer[0];
-        }
-        else if (currentScene == 2 && breakChoiceSceneData != null && breakChoiceSceneData.break_choice_scene_1_2.Count > 0)
+        if (breakChoiceSceneData != null && breakChoiceSceneData.break_choice_scene_1_2.Count > 0)
         {
             currentOptionCall = breakChoiceSceneData.break_choice_scene_1_2[0].option_call_all[0];
             currentOptionAnswer = breakChoiceSceneData.break_choice_scene_1_2[0].option_call_all_answer[0];
+
+            button1.GetComponentInChildren<Text>().text = currentOptionCall.option_call_option_1[0];
+            button1.onClick.AddListener(() => HandleOptionSelected(1));
+            button2.GetComponentInChildren<Text>().text = currentOptionCall.option_call_option_2[0];
+            button2.onClick.AddListener(() => HandleOptionSelected(2));
+            button3.GetComponentInChildren<Text>().text = currentOptionCall.option_call_option_3[0];
+            button3.onClick.AddListener(() => HandleOptionSelected(3));
         }
         else
         {
-            Debug.LogWarning("No break choice scene data found.");
-            return;
+            Debug.LogWarning("No break_choice_scene_1_2 data found in breakChoiceSceneData.");
         }
-
-        // Show buttons again and set text
-        button1.gameObject.SetActive(true);
-        button2.gameObject.SetActive(true);
-        button3.gameObject.SetActive(true);
-
-        button1.GetComponentInChildren<Text>().text = currentOptionCall.option_call_option_1[0];
-        button1.onClick.RemoveAllListeners(); // Ensure old listeners are cleared
-        button1.onClick.AddListener(() => HandleOptionSelected(1));
-
-        button2.GetComponentInChildren<Text>().text = currentOptionCall.option_call_option_2[0];
-        button2.onClick.RemoveAllListeners();
-        button2.onClick.AddListener(() => HandleOptionSelected(2));
-
-        button3.GetComponentInChildren<Text>().text = currentOptionCall.option_call_option_3[0];
-        button3.onClick.RemoveAllListeners();
-        button3.onClick.AddListener(() => HandleOptionSelected(3));
     }
 
     void HandleOptionSelected(int optionNumber)
     {
-        selectedOption = optionNumber;
-        currentSentenceIndex = 1;
-        showingAnswer = false;
-        showingOptionCalls = true;
+        selectedOption = optionNumber; // Store the selected option
+        currentSentenceIndex = 1; // Reset to start from the second sentence
+        showingAnswer = false; // Reset answer showing state
+        showingOptionCalls = true; // Mark as showing option calls
         ShowSecondSentence(optionNumber);
-        HideButtons();
+        HideButtons(); // Hide buttons after showing the response
     }
 
     void ShowSecondSentence(int optionNumber)
@@ -129,7 +110,7 @@ public class BreakChoiceLoader : MonoBehaviour
             case 1:
                 if (currentOptionCall.option_call_option_1.Count > 1)
                 {
-                    secondSentence = currentOptionCall.option_call_option_1[1];
+                    secondSentence = currentOptionCall.option_call_option_1[1]; // Show second sentence
                 }
                 break;
             case 2:
@@ -146,9 +127,9 @@ public class BreakChoiceLoader : MonoBehaviour
                 break;
         }
 
-        dialogText.text = secondSentence;
+        dialogText.text = secondSentence; // Display the second sentence
         Debug.Log($"Second sentence displayed: {secondSentence}");
-        currentSentenceIndex = 2;
+        currentSentenceIndex = 2; // Set the index to the next one for the next click
     }
 
     void Update()
@@ -157,11 +138,11 @@ public class BreakChoiceLoader : MonoBehaviour
         {
             if (showingOptionCalls)
             {
-                ShowNextSentence();
+                ShowNextSentence(); // Show the next sentence in the current option call
             }
             else if (showingAnswer)
             {
-                ShowAnswer();
+                ShowAnswer(); // Show the next answer if it's not already shown
             }
         }
     }
@@ -169,7 +150,7 @@ public class BreakChoiceLoader : MonoBehaviour
     void ShowNextSentence()
     {
         string nextSentence = "";
-        bool optionCallsFinished = false;
+        bool optionCallsFinished = false; // Track if we finished showing all option calls
 
         switch (selectedOption)
         {
@@ -180,7 +161,7 @@ public class BreakChoiceLoader : MonoBehaviour
                 }
                 else
                 {
-                    optionCallsFinished = true;
+                    optionCallsFinished = true; // Finished showing all option calls
                 }
                 break;
             case 2:
@@ -207,15 +188,15 @@ public class BreakChoiceLoader : MonoBehaviour
 
         if (!string.IsNullOrEmpty(nextSentence))
         {
-            dialogText.text = nextSentence;
-            currentSentenceIndex++;
+            dialogText.text = nextSentence; // Show the next sentence
+            currentSentenceIndex++; // Move to the next sentence index
             Debug.Log($"Next sentence displayed: {nextSentence}");
         }
-        else if (optionCallsFinished)
+        else if (optionCallsFinished) // If all option calls are done
         {
-            showingOptionCalls = false;
-            currentSentenceIndex = 0;
-            ShowAnswer();
+            showingOptionCalls = false; // Now switch to showing answers
+            currentSentenceIndex = 0; // Reset index for answers
+            ShowAnswer(); // Show the first answer
         }
         else
         {
@@ -251,34 +232,15 @@ public class BreakChoiceLoader : MonoBehaviour
 
         if (!string.IsNullOrEmpty(answer))
         {
-            dialogText.text = answer;
-            showingAnswer = true;
+            dialogText.text = answer; // Show the answer as a separate sentence
+            showingAnswer = true; // Mark as showing answer
             Debug.Log($"Response displayed: {answer}");
-            currentAnswerIndex++;
+            currentAnswerIndex++; // Move to the next answer index
         }
         else
         {
             Debug.Log("No more answers to display.");
-            // Check if it's the end of the current scene, if so switch to the next scene
-            if (currentScene == 1)
-            {
-                SwitchToNextScene();
-            }
         }
-    }
-
-    void SwitchToNextScene()
-    {
-        Debug.Log("Switching to the next scene...");
-        currentScene = 2;  // Move to scene 2
-        currentSentenceIndex = 1;
-        currentAnswerIndex = 0;
-        selectedOption = 0;
-        showingAnswer = false;
-        showingOptionCalls = false;
-
-        ShowOptionButtons(); // Show buttons for the next scene
-        Debug.Log($"Switched to scene {currentScene}");
     }
 
     void HideButtons()

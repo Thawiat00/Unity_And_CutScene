@@ -46,26 +46,32 @@
             "option_call_all": [
                 {
                     "option_call_option_1": [
-                        "call_option_1"
+                        "call_option_1",
+                        "I'm want to talk to you"
                     ],
                     "option_call_option_2": [
-                        "call_option_2"
+                        "call_option_2",
+                        "I'm can to anything"
                     ],
                     "option_call_option_3": [
-                        "call_option_3"
+                        "call_option_3",
+                        "come on not now"
                     ]
                 }
             ],
             "option_call_all_answer": [
                 {
                     "option_answer_option_1": [
-                        "answer_option_1"
+                        "answer_option_1",
+                        "baka1"
                     ],
                     "option_answer_option_2": [
-                        "answer_option_2"
+                        "answer_option_2",
+                        "baka2"
                     ],
                     "option_answer_option_3": [
-                        "answer_option_3"
+                        "answer_option_3",
+                        "baka3"
                     ]
                 }
             ]
@@ -74,7 +80,8 @@
     "dialog_cs_OC": [
         {
             "cutscene_choice": [
-                "break_choice_scene_1_1"
+                "break_choice_scene_1_1",
+                "break_choice_scene_1_2"
             ],
             "End_dialog": "End"
         }
