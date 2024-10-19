@@ -300,12 +300,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e9f5d521149a2a4a87ed6b5467d3cf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  breakChoiceData: {fileID: 11400000, guid: 242cec88c8f82b644b7c9f4ec640c669, type: 2}
-  dialogText: {fileID: 715870053}
-  optionButtons:
-  - {fileID: 7754720050681957216}
-  - {fileID: 4805124230213391148}
-  - {fileID: 5234211188936699582}
+  choiceButton1Text: {fileID: 2031035929139892540}
+  choiceButton2Text: {fileID: 599009651312430401}
+  choiceButton3Text: {fileID: 5217798544329329458}
+  breakChoiceData:
+    break_choice_scene: []
+    dialog_cs_OC: []
 --- !u!1 &584844566
 GameObject:
   m_ObjectHideFlags: 0
@@ -2182,8 +2182,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0.000030517578, y: -0.000030517578}
+  m_AnchoredPosition: {x: 0, y: 0.37241}
+  m_SizeDelta: {x: 0, y: -0.74484}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5591500620658105477
 GameObject:

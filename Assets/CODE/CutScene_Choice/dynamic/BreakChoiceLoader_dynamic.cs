@@ -1,51 +1,67 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BreakChoiceLoader_dynamic : MonoBehaviour
 {
-    public BreakChoiceData_dynamic breakChoiceData; // ????????????????
+    public Text choiceButton1Text; // ?????????????? UI ????????????????? 1
+    public Text choiceButton2Text; // ?????????????? UI ????????????????? 2
+    public Text choiceButton3Text; // ?????????????? UI ????????????????? 3
+
+    public BreakChoiceData_dynamic breakChoiceData; // ?????????? JSON
 
     void Start()
     {
-        LoadBreakChoiceScene();
-    }
-
-    void LoadBreakChoiceScene()
-    {
-        // ???????? JSON ??? Resources
+        // ???? JSON ??? Resources
         TextAsset jsonFile = Resources.Load<TextAsset>("mock_break_choice_scene");
-
         if (jsonFile != null)
         {
-            string json = jsonFile.text;
-            Debug.Log("Loaded JSON: " + json);  // ?????????? JSON ???????????
-
-            // Deserialize JSON ???? BreakChoiceData_dynamic
-            breakChoiceData = JsonUtility.FromJson<BreakChoiceData_dynamic>(json);
-
-            if (breakChoiceData != null && breakChoiceData.break_choice_scene != null)
-            {
-                Debug.Log("Break choice scenes loaded successfully.");
-
-                // ??????? break_choice_scene
-                foreach (var scene in breakChoiceData.break_choice_scene)
-                {
-                    Debug.Log($"Scene Key: {scene.key}");
-
-                    // ????????????? sceneData
-                    foreach (var sceneData in scene.sceneData)
-                    {
-                        Debug.Log($"Option 1: {string.Join(", ", sceneData.option_call_all[0].option_call_option_1)}");
-                    }
-                }
-            }
-            else
-            {
-                Debug.LogError("No break choice scenes available in data.");
-            }
+            // ???? JSON ???? BreakChoiceData_dynamic
+            breakChoiceData = JsonUtility.FromJson<BreakChoiceData_dynamic>(jsonFile.text);
+            SetupChoiceButtons();
         }
         else
         {
-            Debug.LogError("Cannot find the JSON file in Resources.");
+            Debug.LogError("JSON file not found!");
+        }
+    }
+
+    // ??????????????????????????????? JSON
+    void SetupChoiceButtons()
+    {
+        if (breakChoiceData != null && breakChoiceData.break_choice_scene != null && breakChoiceData.break_choice_scene.Count > 0)
+        {
+            // ???????????????????? scene ??? (???????????????????? scene ???????)
+            BreakChoiceScene_dynamic firstScene = breakChoiceData.break_choice_scene[0];
+            SceneData_dynamic sceneData = firstScene.sceneData[0];
+
+            // ???????????????????????????????? JSON
+            choiceButton1Text.text = sceneData.option_call_all[0].option_call_option_1[0];
+            choiceButton2Text.text = sceneData.option_call_all[0].option_call_option_2[0];
+            choiceButton3Text.text = sceneData.option_call_all[0].option_call_option_3[0];
+        }
+        else
+        {
+            Debug.LogError("No break choice scenes available in data.");
+        }
+    }
+
+    // ??????????????????????????? scene ?????????? key
+    public void LoadSceneData(string sceneKey)
+    {
+        BreakChoiceScene_dynamic scene = breakChoiceData.break_choice_scene.Find(s => s.key == sceneKey);
+        if (scene != null)
+        {
+            SceneData_dynamic sceneData = scene.sceneData[0]; // ?????????????????????????
+            // ???????????????????
+            choiceButton1Text.text = sceneData.option_call_all[0].option_call_option_1[0];
+            choiceButton2Text.text = sceneData.option_call_all[0].option_call_option_2[0];
+            choiceButton3Text.text = sceneData.option_call_all[0].option_call_option_3[0];
+        }
+        else
+        {
+            Debug.LogError("Scene not found!");
         }
     }
 }
