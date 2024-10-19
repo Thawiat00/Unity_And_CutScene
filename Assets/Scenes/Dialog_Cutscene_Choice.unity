@@ -297,13 +297,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 575078212}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dff0e017db5e9b14dafa7f3d80f066f5, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e9f5d521149a2a4a87ed6b5467d3cf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  breakChoiceData: {fileID: 11400000, guid: 242cec88c8f82b644b7c9f4ec640c669, type: 2}
   dialogText: {fileID: 715870053}
-  button1: {fileID: 7754720050681957216}
-  button2: {fileID: 4805124230213391148}
-  button3: {fileID: 5234211188936699582}
+  optionButtons:
+  - {fileID: 7754720050681957216}
+  - {fileID: 4805124230213391148}
+  - {fileID: 5234211188936699582}
 --- !u!1 &584844566
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,77 +1,124 @@
 {
-    "break_choice_scene_1_1": [
+    "break_choice_scene": [
         {
-            "option_call_all": [
+            "key": "break_choice_scene_1",
+            "sceneData": [
                 {
-                    "option_call_option_1": [
-                        "[Use Your Reason]",
-                        "I can explain, but not now.",
-                        "This moment is dangerous"
+                    "option_call_all": [
+                        {
+                            "option_call_option_1": [
+                                "[Use Your Reason]",
+                                "I can explain, but not now.",
+                                "This moment is dangerous"
+                            ],
+                            "option_call_option_2": [
+                                "[Use Your Feelings]",
+                                "You are my important person.",
+                                "I'm can not focus anything except you"
+                            ],
+                            "option_call_option_3": [
+                                "[Use Your Force]",
+                                "Stop acting like that, and come with me!!!",
+                                "I need to bring you quickly"
+                            ]
+                        }
                     ],
-                    "option_call_option_2": [
-                        "[Use Your Feelings]",
-                        "You are my important person.",
-                        "I'm can not focus anything except you"
-                    ],
-                    "option_call_option_3": [
-                        "[Use Your Force]",
-                        "Stop acting like that, and come with me!!!",
-                        "I need to bring you quickly"
-                    ]
-                }
-            ],
-            "option_call_all_answer": [
-                {
-                    "option_answer_option_1": [
-                        "do I have to belive this",
-                        "Tsk!!",
-                        "okey but",
-                        "next time you to tell me",
-                        "Everything!!!"
-                    ],
-                    "option_answer_option_2": [
-                        "you dump!!",
-                        "Hit_2!!"
-                    ],
-                    "option_answer_option_3": [
-                        "You fool!!",
-                        "Hit_3!!"
+                    "option_call_all_answer": [
+                        {
+                            "option_answer_option_1": [
+                                "do I have to belive this",
+                                "Tsk!!",
+                                "okey but",
+                                "next time you to tell me",
+                                "Everything!!!"
+                            ],
+                            "option_answer_option_2": [
+                                "you dump!!",
+                                "Hit_2!!"
+                            ],
+                            "option_answer_option_3": [
+                                "You fool!!",
+                                "Hit_3!!"
+                            ]
+                        }
                     ]
                 }
             ]
-        }
-    ],
-    "break_choice_scene_1_2": [
+        },
         {
-            "option_call_all": [
+            "key": "break_choice_scene_2",
+            "sceneData": [
                 {
-                    "option_call_option_1": [
-                        "call_option_1",
-                        "I'm want to talk to you"
+                    "option_call_all": [
+                        {
+                            "option_call_option_1": [
+                                "call_option_1",
+                                "I'm want to talk to you"
+                            ],
+                            "option_call_option_2": [
+                                "call_option_2",
+                                "I'm can to anything"
+                            ],
+                            "option_call_option_3": [
+                                "call_option_3",
+                                "come on not now"
+                            ]
+                        }
                     ],
-                    "option_call_option_2": [
-                        "call_option_2",
-                        "I'm can to anything"
-                    ],
-                    "option_call_option_3": [
-                        "call_option_3",
-                        "come on not now"
+                    "option_call_all_answer": [
+                        {
+                            "option_answer_option_1": [
+                                "answer_option_1",
+                                "baka1"
+                            ],
+                            "option_answer_option_2": [
+                                "answer_option_2",
+                                "baka2"
+                            ],
+                            "option_answer_option_3": [
+                                "answer_option_3",
+                                "baka3"
+                            ]
+                        }
                     ]
                 }
-            ],
-            "option_call_all_answer": [
+            ]
+        },
+        {
+            "key": "break_choice_scene_2_1",
+            "sceneData": [
                 {
-                    "option_answer_option_1": [
-                        "answer_option_1",
-                        "baka1"
+                    "option_call_all": [
+                        {
+                            "option_call_option_1": [
+                                "call_option_1",
+                                "I'm want to talk to you"
+                            ],
+                            "option_call_option_2": [
+                                "call_option_2",
+                                "I'm can to anything"
+                            ],
+                            "option_call_option_3": [
+                                "call_option_3",
+                                "come on not now"
+                            ]
+                        }
                     ],
-                    "option_answer_option_2": [
-                        "answer_option_2",
-                        "baka2"
-                    ],
-                    "option_answer_option_3": [
-                        "answer_option_3",
-                        "baka3"
+                    "option_call_all_answer": [
+                        {
+                            "option_answer_option_1": [
+                                "answer_option_1",
+                                "baka1"
+                            ],
+                            "option_answer_option_2": [
+                                "answer_option_2",
+                                "baka2"
+                            ],
+                            "option_answer_option_3": [
+                                "answer_option_3",
+                                "baka3"
+                            ]
+                        }
                     ]
                 }
             ]
@@ -80,8 +127,9 @@
     "dialog_cs_OC": [
         {
             "cutscene_choice": [
-                "break_choice_scene_1_1",
-                "break_choice_scene_1_2"
+                "break_choice_scene_1",
+                "break_choice_scene_2",
+                "break_choice_scene_2_1"
             ],
             "End_dialog": "End"
         }
