@@ -61,7 +61,7 @@
                             ],
                             "option_call_option_3": [
                                 "call_option_3",
-                                "come on not now"
+                                "come on , not now"
                             ]
                         }
                     ],
@@ -92,15 +92,15 @@
                         {
                             "option_call_option_1": [
                                 "call_option_1",
-                                "I'm want to talk to you"
+                                "I'm god"
                             ],
                             "option_call_option_2": [
                                 "call_option_2",
-                                "I'm can to anything"
+                                "I'm carry"
                             ],
                             "option_call_option_3": [
                                 "call_option_3",
-                                "come on not now"
+                                "I'm hybird"
                             ]
                         }
                     ],
@@ -127,8 +127,6 @@
     "dialog_cs_OC": [
         {
             "cutscene_choice": [
-                "break_choice_scene_1",
-                "break_choice_scene_2",
                 "break_choice_scene_2_1"
             ],
             "End_dialog": "End"
