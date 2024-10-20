@@ -127,6 +127,8 @@
     "dialog_cs_OC": [
         {
             "cutscene_choice": [
+                "break_choice_scene_1",
+                "break_choice_scene_2",
                 "break_choice_scene_2_1"
             ],
             "End_dialog": "End"
