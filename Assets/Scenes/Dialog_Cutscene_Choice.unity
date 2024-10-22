@@ -300,13 +300,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e9f5d521149a2a4a87ed6b5467d3cf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isdebug: 0
+  isdebug: 1
   isdebug_load_index_cutscene_choic: 0
   isdebug_button_click: 0
-  isdebug_spacebar_work: 1
+  isdebug_spacebar_work: 0
   breakChoiceData:
     break_choice_scene: []
     dialog_cs_OC: []
+  button_currentState: 0
+  current_status_Spacebar: 0
+  display_current_list_dialog: []
   keep_list_button1: []
   keep_list_button2: []
   keep_list_button3: []
@@ -1154,11 +1157,11 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5541426842606313468}
   - {fileID: 1535879658}
   - {fileID: 1225645368}
   - {fileID: 1085140650}
   - {fileID: 685254179}
+  - {fileID: 5541426842606313468}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2060,7 +2063,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -2234,7 +2237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -2558,7 +2561,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}

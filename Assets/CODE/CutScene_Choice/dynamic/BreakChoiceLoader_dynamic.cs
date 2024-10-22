@@ -24,21 +24,26 @@ public class BreakChoiceLoader_dynamic : MonoBehaviour
 
     public BreakChoiceData_dynamic breakChoiceData; // JSON Data
 
+
     public enum button_choice_status
     {
         button_display,
         button_turnoff
     }
 
+   
     public enum status_spacebar
     {
         spacebar_no_active,
         spacebar_working
     }
 
+
     // ?????????????????? GameState
+    [SerializeField]
     button_choice_status button_currentState;
 
+    [SerializeField]
     status_spacebar current_status_Spacebar;
 
     //set_current_list_display_to_dialog_text;
@@ -98,26 +103,80 @@ public class BreakChoiceLoader_dynamic : MonoBehaviour
                 //Debug.Log("working +1 index on dialog in text :" + keep_data_button[Text_current_Index];);
             }
 
-            dialogText.text = display_current_list_dialog[Text_current_Index];
 
+            Debug.Log("display_current_list_dialog[Text_current_Index] :" + display_current_list_dialog[Text_current_Index]);
+            dialogText.text = display_current_list_dialog[Text_current_Index];
 
             //  check_current_plus_index_on_spacebar();
 
 
-            if (Text_current_Index + 1 >= display_current_list_dialog.Count)
+            if (Text_current_Index + 1 >= display_current_list_dialog.Count &&index_order_dialog  <= breakChoiceData.dialog_cs_OC.Count)
             {
                 if (isdebug_load_index_cutscene_choic == true)
                 Debug.LogWarning("breakChoiceData.dialog_cs_OC[0].cutscene_choice[index_order_dialog] is more array have");
 
+                Debug.LogWarning("have to make new  index_order_dialog");
+
+
+                //check +1 index_order
+                check_plus_index_order_dialog();
+
+
+                //check load variable
+                 load_variable_to_use();
+
+
+                /*
+                Debug.Log(keep_list_button1[0]);
+                Debug.Log(keep_list_button2[0]);
+                Debug.Log(keep_list_button3[0]);
+                */
+                 Get_text_button(); 
+                // Get_text_button();
+
+                //check turn on button
+                 set_turnON_active_all_button();
+
+                SetupButton_listiner();
+
+               // return;
+            }
+            else if (Text_current_Index + 1 >= display_current_list_dialog.Count && index_order_dialog > breakChoiceData.dialog_cs_OC.Count)
+            {
+                Debug.Log("END all dialog");
                 return;
             }
+
+
+            //  else if(Text_current_Index + 1 >= display_current_list_dialog.Count && index_order_dialog + 1 > breakChoiceData.dialog_cs_OC.Count)
+            //   {
+            //       Debug.Log("end dialog");
+            //   }
+
             else
             {
-
+                Debug.Log("else statment");
                 check_current_plus_index_on_spacebar();
             }
 
+      
         }
+    }
+
+    private void check_plus_index_order_dialog()
+    {
+        if (index_order_dialog <= breakChoiceData.dialog_cs_OC.Count)
+        {
+            if (isdebug_spacebar_work == true)
+                Debug.Log("+1  Text_current_Index");
+
+            index_order_dialog += 1;
+        }
+        else
+        {
+            Debug.Log("else statment check_plus_index_order_dialog()");
+        }
+   
     }
 
     private void check_current_plus_index_on_spacebar()
@@ -142,6 +201,9 @@ public class BreakChoiceLoader_dynamic : MonoBehaviour
 
     }
 
+
+
+
     void Start()
     {
         button_currentState = button_choice_status.button_display;
@@ -161,7 +223,18 @@ public class BreakChoiceLoader_dynamic : MonoBehaviour
 
 
         SetupButton_listiner();
-       
+
+        //count +1 on this dialog_data on index_order_dialog
+        /*
+        Debug.Log("breakChoiceData.dialog_cs_OC[0].cutscene_choice[0];"+ breakChoiceData.dialog_cs_OC[0].cutscene_choice[0]);
+        Debug.Log("breakChoiceData.dialog_cs_OC[0].cutscene_choice[1];" + breakChoiceData.dialog_cs_OC[0].cutscene_choice[1]);
+        Debug.Log("breakChoiceData.dialog_cs_OC[0].cutscene_choice[2];" + breakChoiceData.dialog_cs_OC[0].cutscene_choice[2]);
+        */
+       // Debug.Log("breakChoiceData.dialog_cs_OC[0].cutscene_choice[0];" + breakChoiceData.dialog_cs_OC[0].cutscene_choice[index_order_dialog]);
+       // Debug.Log("breakChoiceData.dialog_cs_OC[0].cutscene_choice[1];" + breakChoiceData.dialog_cs_OC[0].cutscene_choice[1]);
+       // Debug.Log("breakChoiceData.dialog_cs_OC[0].cutscene_choice[2];" + breakChoiceData.dialog_cs_OC[0].cutscene_choice[2]
+
+
     }
 
    
@@ -175,8 +248,14 @@ public class BreakChoiceLoader_dynamic : MonoBehaviour
 
     void SetupButtonWithDebug(List<string> keep_display_list_dialog_text ,List<string> keep_data_button,string data_button_name ,Button button, string buttonName)
     {
+        button.onClick.RemoveAllListeners();
+        
+
         button.onClick.AddListener(() =>
         {
+            Debug.Log(" keep_data_button :" + keep_list_button1.Count);
+            Debug.Log("keep_data_button[Text_current_Index] : " + keep_data_button[Text_current_Index]);
+
             //if click have to recived button on click
             // Debug.Log("recived button :" Button.onClick.AddListener().ToSafeString());
 
@@ -266,6 +345,8 @@ public class BreakChoiceLoader_dynamic : MonoBehaviour
             button_currentState = button_choice_status.button_display;
 
             current_status_Spacebar = status_spacebar.spacebar_no_active;
+
+         //   Get_text_button();
         }
 
        
@@ -293,68 +374,7 @@ public class BreakChoiceLoader_dynamic : MonoBehaviour
         }
     }
 
-    /*
-    private void Load_variable_use()
-    {
-        //foreach breakChoiceData.break_choice_scene
-        foreach (var scene in breakChoiceData.break_choice_scene)
-        {
 
-
-            if (scene.key.Contains(firstDialog) == true)
-            {
-
-                if (isdebug == true)
-                    Debug.Log("scene.key.Contains(dialogChoice) have :" + firstDialog);
-
-                int index = breakChoiceData.break_choice_scene.FindIndex(scene => scene.key.Contains(firstDialog));
-
-                if (isdebug == true)
-                    Debug.Log("breakChoiceData.break_choice_scene.FindIndex(scene => scene.key.Contains(firstDialog)); :" + index);
-
-
-                // ????????????? sceneData ????????? index
-                var matchedScene = breakChoiceData.break_choice_scene[index];
-
-                if (isdebug == true)
-                    Debug.Log("breakChoiceData.break_choice_scene[index] :" + matchedScene.key.ToString());
-
-
-                // scene.key[index] = scene.sceneData[index].option_call_all
-                string buttonText1 = matchedScene.sceneData[0].option_call_all[0].option_call_option_1[0];
-                string buttonText2 = matchedScene.sceneData[0].option_call_all[0].option_call_option_2[0];
-                string buttonText3 = matchedScene.sceneData[0].option_call_all[0].option_call_option_3[0];
-
-
-                keep_list_button1 = matchedScene.sceneData[0].option_call_all[0].option_call_option_1;
-                keep_list_button2 = matchedScene.sceneData[0].option_call_all[0].option_call_option_2;
-                keep_list_button3 = matchedScene.sceneData[0].option_call_all[0].option_call_option_3;
-                // List<string> keep_list_button1
-                //List <keep list button1>
-
-                if (isdebug == true)
-                {
-                    Debug.Log("buttonText1 :" + buttonText1);
-                    Debug.Log("buttonText2 :" + buttonText2);
-                    Debug.Log("buttonText3 :" + buttonText3);
-
-                }
-
-
-                // ??????????????????????????????????????
-                choiceButton1.GetComponentInChildren<Text>().text = buttonText1;
-                choiceButton2.GetComponentInChildren<Text>().text = buttonText2;
-                choiceButton3.GetComponentInChildren<Text>().text = buttonText3;
-
-                // ??? break ?????????
-                break;
-            }
-
-
-        }
-    }
-
-    */
 
     //for button_click
     public  void FOR_BUTTON_load_index_cutscene_choice()
@@ -482,106 +502,54 @@ public class BreakChoiceLoader_dynamic : MonoBehaviour
         CheckDataForUseCurrent(); // ?????????????????????????????
     }
 
+
+    //make +1 for index_order_dialog same index_order_dialog += 1 and then method_working_load_variable agian
+
     private void method_working_load_variable()
     {
+        clear_data_method_loop();
+
         // ???????????????????? breakChoiceData.dialog_cs_OC ???????
         if (breakChoiceData.dialog_cs_OC[0].cutscene_choice.Count > 0)
         {
+           // index_order_dialog
+
             // var firstDialog = breakChoiceData.dialog_cs_OC[0]; // ????????????? dialog ??????
-            var firstDialog = breakChoiceData.dialog_cs_OC[0].cutscene_choice[0]; // ????????????? dialog ??????
+            var firstDialog = breakChoiceData.dialog_cs_OC[0].cutscene_choice[index_order_dialog]; //fix dialog
 
             if (isdebug == true)
                 Debug.Log("firstDialog :" + firstDialog);
-            //  Debug.Log("firstDialog :" + firstDialog);
+          
 
             // ?????????????????? break_choice_scene ??? firstDialog
             LinkDataSameKey(firstDialog);
         }
     }
 
-    /*
-    void LinkDataSameKey(string firstDialog)
+    private void clear_data_method_loop()
     {
+        Text_current_Index = 1;
+       
 
+        display_current_list_dialog.Clear();
 
-        // ??????? break_choice_scene
-
-        //foreach breakChoiceData.break_choice_scene
-        foreach (var scene in breakChoiceData.break_choice_scene)
-        {
-            
-          
-                if (scene.key.Contains(firstDialog) == true)
-                {
-
-                if (isdebug == true)
-                    Debug.Log("scene.key.Contains(dialogChoice) have :" + firstDialog);
-
-                    int index = breakChoiceData.break_choice_scene.FindIndex(scene => scene.key.Contains(firstDialog));
-
-                if (isdebug == true)
-                    Debug.Log("breakChoiceData.break_choice_scene.FindIndex(scene => scene.key.Contains(firstDialog)); :" + index);
-
-
-                // ????????????? sceneData ????????? index
-                var matchedScene = breakChoiceData.break_choice_scene[index];
-
-                if (isdebug == true)
-                    Debug.Log("breakChoiceData.break_choice_scene[index] :" + matchedScene.key.ToString());
-
-             
-                // scene.key[index] = scene.sceneData[index].option_call_all
-                string buttonText1 = matchedScene.sceneData[0].option_call_all[0].option_call_option_1[0];
-                string buttonText2 = matchedScene.sceneData[0].option_call_all[0].option_call_option_2[0];
-                string buttonText3 = matchedScene.sceneData[0].option_call_all[0].option_call_option_3[0];
-
-
-                keep_list_button1 = matchedScene.sceneData[0].option_call_all[0].option_call_option_1;
-                keep_list_button2 = matchedScene.sceneData[0].option_call_all[0].option_call_option_2;
-                keep_list_button3 = matchedScene.sceneData[0].option_call_all[0].option_call_option_3;
-                // List<string> keep_list_button1
-                //List <keep list button1>
-
-                if (isdebug == true)
-                {
-                    Debug.Log("buttonText1 :" + buttonText1);
-                    Debug.Log("buttonText2 :" + buttonText2);
-                    Debug.Log("buttonText3 :" + buttonText3);
-
-                }
-
-
-                // ??????????????????????????????????????
-                choiceButton1.GetComponentInChildren<Text>().text = buttonText1;
-                choiceButton2.GetComponentInChildren<Text>().text = buttonText2;
-                choiceButton3.GetComponentInChildren<Text>().text = buttonText3;
-
-                // ??? break ?????????
-                break;
-            }    
-               
-
-        }
-
-
+        keep_list_button1.Clear();
+        keep_list_button2.Clear();
+        keep_list_button3.Clear();
     }
-    */
-
-
 
     void LinkDataSameKey(string firstDialog)
    {
 
-
-
         load_variable(firstDialog);
 
-
-     
    }
 
     private void load_variable(string firstDialog)
     {
+        
+
+
         //foreach breakChoiceData.break_choice_scene
         foreach (var scene in breakChoiceData.break_choice_scene)
         {
@@ -605,6 +573,8 @@ public class BreakChoiceLoader_dynamic : MonoBehaviour
                 if (isdebug == true)
                     Debug.Log("breakChoiceData.break_choice_scene[index] :" + matchedScene.key.ToString());
 
+
+                //index_order_dialog
 
                 // scene.key[index] = scene.sceneData[index].option_call_all
 
