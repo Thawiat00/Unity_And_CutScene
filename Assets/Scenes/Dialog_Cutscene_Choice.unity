@@ -300,13 +300,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e9f5d521149a2a4a87ed6b5467d3cf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isdebug: 0
+  isdebug_load_index_cutscene_choic: 0
+  isdebug_button_click: 0
+  isdebug_spacebar_work: 1
   breakChoiceData:
     break_choice_scene: []
     dialog_cs_OC: []
+  keep_list_button1: []
+  keep_list_button2: []
+  keep_list_button3: []
   choiceButton1: {fileID: 7754720050681957216}
   choiceButton2: {fileID: 4805124230213391148}
   choiceButton3: {fileID: 5234211188936699582}
   dialogText: {fileID: 1117519687}
+  Text_current_Index: 1
+  index_order_dialog: 0
 --- !u!1 &584844566
 GameObject:
   m_ObjectHideFlags: 0
@@ -2081,7 +2090,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7279521496708863512}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 575078215}
+        m_TargetAssemblyTypeName: BreakChoiceLoader_dynamic, Assembly-CSharp
+        m_MethodName: FOR_BUTTON_load_index_cutscene_choice
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4811833198455129042
 GameObject:
   m_ObjectHideFlags: 0
@@ -2243,7 +2264,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5233922689765160087}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 575078215}
+        m_TargetAssemblyTypeName: BreakChoiceLoader_dynamic, Assembly-CSharp
+        m_MethodName: FOR_BUTTON_load_index_cutscene_choice
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!224 &5541426842606313468
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2555,7 +2588,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1059670539612291497}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 575078215}
+        m_TargetAssemblyTypeName: BreakChoiceLoader_dynamic, Assembly-CSharp
+        m_MethodName: FOR_BUTTON_load_index_cutscene_choice
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &8195379143202482402
 CanvasRenderer:
   m_ObjectHideFlags: 0
