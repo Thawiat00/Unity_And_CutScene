@@ -1,0 +1,139 @@
+{
+    "scene": [
+        {
+            "id": 1,
+            "camera": {
+                "position": "behind_player",
+                "action": "follow"
+            },
+            "player": {
+                "action": "walk_forward",
+                "distance": "5-6 meters"
+            },
+            "sound": {
+                "effect": "play",
+                "location": "beside_player"
+            }
+        },
+        {
+            "id": 2,
+            "camera": {
+                "position": "side_of_player",
+                "angle": "low_to_high"
+            }
+        },
+        {
+            "id": 3,
+            "player": {
+                "action": "turn_left",
+                "target": "object_boss"
+            }
+        },
+        {
+            "id": 4,
+            "camera": {
+                "position": "boss_perspective"
+            }
+        },
+        {
+            "id": 5,
+            "camera": {
+                "position": "in_front_of_boss",
+                "action": "pan_forward"
+            },
+            "boss": {
+                "action": "walk_forward",
+                "distance": "2-3 meters",
+                "target": "trigger_point"
+            }
+        },
+        {
+            "id": 6,
+            "boss": {
+                "action": "shout",
+                "effect": {
+                    "physics": {
+                        "apply_force": {
+                            "targets": [
+                                "small_rocks_1",
+                                "small_rocks_2",
+                                "small_rocks_3"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "id": 7,
+            "ui": {
+                "display": "boss_stage_tutorial_name"
+            }
+        }
+    ],
+    "boss": {
+        "id": 1,
+        "name": "Boss_Name",
+        "actions": [
+            {
+                "action": "walk",
+                "distance": "2-3 meters"
+            },
+            {
+                "action": "shout",
+                "effect": "apply_physics",
+                "target": [
+                    "rock_1",
+                    "rock_2",
+                    "rock_3"
+                ]
+            }
+        ]
+    },
+    "player": {
+        "id": 1,
+        "actions": [
+            {
+                "action": "walk_forward",
+                "distance": "5-6 meters"
+            },
+            {
+                "action": "turn_left",
+                "target": "object_boss"
+            }
+        ]
+    },
+    "camera_positions": [
+        {
+            "id": 1,
+            "position": "behind_player"
+        },
+        {
+            "id": 2,
+            "position": "side_of_player",
+            "angle": "low_to_high"
+        },
+        {
+            "id": 3,
+            "position": "boss_perspective"
+        },
+        {
+            "id": 4,
+            "position": "in_front_of_boss",
+            "action": "pan_forward"
+        }
+    ],
+    "sound_effects": [
+        {
+            "id": 1,
+            "effect": "play",
+            "location": "beside_player"
+        }
+    ],
+    "ui_elements": [
+        {
+            "id": 1,
+            "display": "boss_stage_tutorial_name"
+        }
+    ]
+}
