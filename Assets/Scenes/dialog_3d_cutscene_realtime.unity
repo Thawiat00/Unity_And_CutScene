@@ -255,21 +255,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 708600621}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 472294e61efffd043ae22bdc61dec1cd, type: 3}
+  m_Script: {fileID: 11500000, guid: d735c9c4eb5f9404885f7caf3f63e567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData:
-    scenes: []
-    player:
-      id: 0
-      actions: []
-    boss:
-      id: 0
-      name: 
-      actions: []
-    cameraPositions: []
-    soundEffects: []
-    uiElements: []
+  jsonFile: {fileID: 4900000, guid: 903c3efe64f0a434c8b076c9c53abf86, type: 3}
 --- !u!1 &1387799759
 GameObject:
   m_ObjectHideFlags: 0

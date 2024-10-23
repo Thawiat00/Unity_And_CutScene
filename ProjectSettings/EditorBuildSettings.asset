@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/dialog_3d_cutscene_realtime.unity
+    guid: e2cbb3332c29a95448a7a74fa2ea568a
   m_configObjects: {}

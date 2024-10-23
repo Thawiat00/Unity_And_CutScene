@@ -2,73 +2,131 @@
     "scene": [
         {
             "id": 1,
-            "camera": {
-                "position": "behind_player",
-                "action": "follow"
-            },
-            "player": {
-                "action": "walk_forward",
-                "distance": "5-6 meters"
-            },
-            "sound": {
-                "effect": "play",
-                "location": "beside_player"
-            }
+            "key": "walking player pose 1"
         },
         {
             "id": 2,
-            "camera": {
-                "position": "side_of_player",
-                "angle": "low_to_high"
-            }
+            "key": "camera side view"
         },
         {
             "id": 3,
-            "player": {
-                "action": "turn_left",
-                "target": "object_boss"
-            }
+            "key": "player turn left"
         },
         {
             "id": 4,
-            "camera": {
-                "position": "boss_perspective"
-            }
+            "key": "boss perspective"
         },
         {
             "id": 5,
-            "camera": {
-                "position": "in_front_of_boss",
-                "action": "pan_forward"
-            },
-            "boss": {
-                "action": "walk_forward",
-                "distance": "2-3 meters",
-                "target": "trigger_point"
-            }
+            "key": "boss forward walk"
         },
         {
             "id": 6,
-            "boss": {
-                "action": "shout",
-                "effect": {
-                    "physics": {
-                        "apply_force": {
-                            "targets": [
-                                "small_rocks_1",
-                                "small_rocks_2",
-                                "small_rocks_3"
-                            ]
-                        }
-                    }
-                }
-            }
+            "key": "boss shout"
         },
         {
             "id": 7,
-            "ui": {
-                "display": "boss_stage_tutorial_name"
-            }
+            "key": "ui boss tutorial"
+        }
+    ],
+    "combo_acting": [
+        {
+            "key": "walking player pose 1",
+            "data_acting": [
+                {
+                    "camera": {
+                        "position": "behind_player",
+                        "action": "follow"
+                    },
+                    "player": {
+                        "action": "walk_forward",
+                        "distance": "5-6 meters"
+                    },
+                    "sound": {
+                        "effect": "play",
+                        "location": "beside_player"
+                    }
+                }
+            ]
+        },
+        {
+            "key": "camera side view",
+            "data_acting": [
+                {
+                    "camera": {
+                        "position": "side_of_player",
+                        "angle": "low_to_high"
+                    }
+                }
+            ]
+        },
+        {
+            "key": "player turn left",
+            "data_acting": [
+                {
+                    "player": {
+                        "action": "turn_left",
+                        "target": "object_boss"
+                    }
+                }
+            ]
+        },
+        {
+            "key": "boss perspective",
+            "data_acting": [
+                {
+                    "camera": {
+                        "position": "boss_perspective"
+                    }
+                }
+            ]
+        },
+        {
+            "key": "boss forward walk",
+            "data_acting": [
+                {
+                    "camera": {
+                        "position": "in_front_of_boss",
+                        "action": "pan_forward"
+                    },
+                    "boss": {
+                        "action": "walk_forward",
+                        "distance": "2-3 meters",
+                        "target": "trigger_point"
+                    }
+                }
+            ]
+        },
+        {
+            "key": "boss shout",
+            "data_acting": [
+                {
+                    "boss": {
+                        "action": "shout",
+                        "effect": {
+                            "physics": {
+                                "apply_force": {
+                                    "targets": [
+                                        "small_rocks_1",
+                                        "small_rocks_2",
+                                        "small_rocks_3"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "key": "ui boss tutorial",
+            "data_acting": [
+                {
+                    "ui": {
+                        "display": "boss_stage_tutorial_name"
+                    }
+                }
+            ]
         }
     ],
     "boss": {
