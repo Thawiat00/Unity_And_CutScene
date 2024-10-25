@@ -1,0 +1,4 @@
+- make controller 3d demo
+-not have to make json data but simple and fast
+
+-use CharacterController.Move

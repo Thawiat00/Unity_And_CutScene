@@ -1,0 +1,63 @@
+{
+    scene [
+        {
+            id 1,
+            key walking player pose 1
+        },
+
+
+
+  "combo_acting": [
+        {
+            "key": "walking player pose 1",
+            "data_acting": [
+                {
+                    "camera": {
+                        "position": "behind_player",
+                        "action": "follow"
+                    },
+                    "player": {
+                        "action": "walk_forward",
+                        "distance": "5-6 meters"
+                    },
+                    "sound": {
+                        "effect": "play",
+                        "location": "beside_player"
+                    }
+                }
+            ]
+        }
+
+
+        make raw data to use all this method 2 way , way json data and way method method c#
+
+
+===========
+กำหนด gameobject ให้ property มัน set active =false
+ใช้ กำหนด anim มา 2 คลิป โดยที่ 1. player_demo 2.player_rotate_left
+
+ใช้คำสั่งเล่นอนิเมชั่นเป็น 
+queue is QueueMode.CompleteOthers this animation will only start once all other animations have stopped playing. 
+
+ตัวอย่างเช่น
+
+  Animation anim = GetComponent<Animation>();
+
+        //Queues each of these animations to be played one after the other
+        anim.PlayQueued("CubeBob", QueueMode.CompleteOthers);
+        anim.PlayQueued("CubeFlip", QueueMode.CompleteOthers);
+        anim.PlayQueued("CubeShuffle", QueueMode.CompleteOthers);
+
+ถ้าเปลี่ยนเป็นที่กำหนด ก็จะเป็น
+
+  Animation anim = GetComponent<Animation>();
+
+        //Queues each of these animations to be played one after the other
+        anim.PlayQueued("player_demo", QueueMode.CompleteOthers);
+        anim.PlayQueued("player_rotate_left", QueueMode.CompleteOthers);
+   
+
+เรียงลงมาจากการเล่น อนิเมชั่น จากอนิเมชั่นที่ 1 ไป 2 ตามลำดับ
+
+
+
