@@ -60,4 +60,54 @@ queue is QueueMode.CompleteOthers this animation will only start once all other 
 เรียงลงมาจากการเล่น อนิเมชั่น จากอนิเมชั่นที่ 1 ไป 2 ตามลำดับ
 
 
+=======================
+พอทำ interface เสร็จ ให้โยงคำสั่งไปมา ระหว่าง 2 class
+
+ให้ทำ c# ต่อ
+1.C# Fundamentals for Absolute Beginners
+https://learn.microsoft.com/en-us/shows/csharp-fundamentals-for-absolute-beginners/
+
+2.C# for Beginners
+https://learn.microsoft.com/en-us/shows/csharp-for-beginners/
+
+3.C# Advanced
+https://learn.microsoft.com/en-us/shows/c-advanced/
+
+4.Beginner's Series to: Unity
+https://learn.microsoft.com/en-us/shows/beginners-series-to-unity/
+
+
+
+
+ให้ทำ Learn with Pathways ของ unity ต่อ
+
+brackey
+https://www.youtube.com/playlist?list=PLPV2KyIb3jR5QFsefuO2RlAgWEz6EvVi6
+
+
+1.unity-essentials
+https://learn.unity.com/pathway/unity-essentials
+
+
+
+2.Mobile AR Development
+https://learn.unity.com/pathway/mobile-ar-development
+
+
+3.Creative Core
+https://learn.unity.com/pathway/creative-core
+
+
+
+4.Junior Programmer
+https://learn.unity.com/pathway/junior-programmer
+
+
+
+
+
+
+
+
+
 

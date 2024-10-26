@@ -20,6 +20,17 @@
 
 การใช้หลักการเหล่านี้จะช่วยให้คุณได้คำตอบที่มีคุณภาพและลดความสับสนในบทสนทนาได้ครับ! ถ้าคุณมีเรื่องอื่นๆ ที่อยากปรับปรุงเพิ่มเติมก็ยินดีช่วยเสมอนะ!
 
+ถ้าจะใช้ clip animation ทำ animation เป็น legacy โดยไปที่โหมด debug ขวาบน แล้วไปคลิกที่ legacy
+
+จากนั้น add clip ที่อยากเล่นใน animation ไปไว้ที่ animation component  ( หรือจะ debug แล้วให้โหลดจาก list ของ animation ก่อน จากคำสั่ง add แต่ล่ะคลิป animation แล้วค่อยไปเปิดเล่นเป็น quene)
+(เช่น 
+        Animation_2.PlayQueued("Player_demo", QueueMode.CompleteOthers);
+        Animation_2.PlayQueued("Player_rotate_left", QueueMode.CompleteOthers);
+
+        เป็นต้น
+
+)
+
 
 
 

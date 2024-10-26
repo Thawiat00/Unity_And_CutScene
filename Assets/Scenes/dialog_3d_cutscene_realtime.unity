@@ -341,6 +341,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61e7beb1ccb081042ba42dce54242e96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debug_component_player: 0
+  _status_Character: 0
+  capsule_player: {fileID: 0}
+  character_player: {fileID: 0}
   speed: 3
   rotateSpeed: 3
 --- !u!143 &139246157
@@ -378,7 +382,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 223375157}
-  - component: {fileID: 223375158}
+  - component: {fileID: 223375161}
+  - component: {fileID: 223375160}
   - component: {fileID: 223375159}
   m_Layer: 0
   m_Name: Player_cutscene_3d
@@ -403,27 +408,6 @@ Transform:
   - {fileID: 139246152}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &223375158
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 223375156}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 937bb2dfd0be7234f82086c13884cebe, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &223375159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -436,7 +420,132 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aac029e9b140d34ba11ce50314d5ea4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debug_animation: 0
   animator_player: {fileID: 0}
+  Animation_2: {fileID: 0}
+--- !u!111 &223375160
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 223375156}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 260f86e8cd39d97458666dc6777161db, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 260f86e8cd39d97458666dc6777161db, type: 2}
+  - {fileID: 7400000, guid: c993a0caacec5244ea47b31b37965cd4, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!95 &223375161
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 223375156}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &337751271
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 337751272}
+  - component: {fileID: 337751273}
+  - component: {fileID: 337751274}
+  m_Layer: 0
+  m_Name: CutScene Loader json
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &337751272
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 337751271}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -10.19252, y: -0.45429206, z: 7.6503944}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &337751273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 337751271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d735c9c4eb5f9404885f7caf3f63e567, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debug_data_cutscene_json: 0
+  jsonFile: {fileID: 4900000, guid: 903c3efe64f0a434c8b076c9c53abf86, type: 3}
+  cutsceneData:
+    scene: []
+    combo_acting: []
+    boss:
+      action: 
+      distance: 
+      target: 
+      effect:
+        physics:
+          apply_force:
+            targets: []
+      id: 0
+      name: 
+      actions: []
+    player:
+      action: 
+      distance: 
+      target: 
+      id: 0
+      actions: []
+    camera_positions: []
+    sound_effects: []
+    ui_elements: []
+  make_copy_key: []
+--- !u!114 &337751274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 337751271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a509878f018e4641ba0320fb5607c8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debug_playcutscene: 1
+  cutsceneLoader: {fileID: 0}
 --- !u!1 &391210314
 GameObject:
   m_ObjectHideFlags: 0
@@ -6941,7 +7050,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1838596172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6954,7 +7063,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a509878f018e4641ba0320fb5607c8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug_playcutscene: 1
+  debug_playcutscene: 0
+  cutsceneLoader: {fileID: 0}
 --- !u!4 &1838596173
 Transform:
   m_ObjectHideFlags: 0
@@ -7303,7 +7413,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2108514167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7324,7 +7434,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2108514166}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.2645559, y: 0.21318063, z: -12.611166}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7336,8 +7446,9 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1387799761}
-  - {fileID: 223375157}
-  - {fileID: 1838596173}
   - {fileID: 1402317012}
-  - {fileID: 2108514168}
   - {fileID: 1229715619}
+  - {fileID: 337751272}
+  - {fileID: 1838596173}
+  - {fileID: 2108514168}
+  - {fileID: 223375157}
