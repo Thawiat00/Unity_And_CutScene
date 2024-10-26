@@ -61,6 +61,17 @@ queue is QueueMode.CompleteOthers this animation will only start once all other 
 
 
 =======================
+
+ทำ โหลด list ของ animation ตามข้อมูล json
+ในข้อมูลของการโหลด json มันมี key ที่แสดงลำดับการใช้อนิเมชั่น
+
+ทดลอง โหลด list ผ่าน component animation แบบเพิ่ม-ถอน ธรรมดา (clear)
+
+
+ทดลอง โหลด list ผ่าน component animation แบบเพิ่ม-ถอน dynamic ข้อมูล json
+(ดูใน chatgpt devsize69)
+
+
 พอทำ interface เสร็จ ให้โยงคำสั่งไปมา ระหว่าง 2 class
 
 ให้ทำ c# ต่อ

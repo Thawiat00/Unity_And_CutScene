@@ -420,9 +420,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aac029e9b140d34ba11ce50314d5ea4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug_animation: 0
+  debug_animation: 1
   animator_player: {fileID: 0}
-  Animation_2: {fileID: 0}
+  _animation: {fileID: 0}
+  _animationClips: []
+  sortedClipsByKeys: []
 --- !u!111 &223375160
 Animation:
   m_ObjectHideFlags: 0
@@ -432,10 +434,8 @@ Animation:
   m_GameObject: {fileID: 223375156}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 260f86e8cd39d97458666dc6777161db, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 260f86e8cd39d97458666dc6777161db, type: 2}
-  - {fileID: 7400000, guid: c993a0caacec5244ea47b31b37965cd4, type: 2}
+  m_Animation: {fileID: 0}
+  m_Animations: []
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -544,7 +544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a509878f018e4641ba0320fb5607c8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug_playcutscene: 1
+  debug_playcutscene: 0
   cutsceneLoader: {fileID: 0}
 --- !u!1 &391210314
 GameObject:

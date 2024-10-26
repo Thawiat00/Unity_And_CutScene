@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CutsceneController_3d_cutscene : MonoBehaviour, ICountChecker
@@ -9,6 +10,16 @@ public class CutsceneController_3d_cutscene : MonoBehaviour, ICountChecker
 
     [SerializeField]
     CutsceneLoader cutsceneLoader;
+
+    [SerializeField]
+    ICountChecker_cutscene_player _countChecker_Cutscene_Player;
+
+
+    // ?????? delegate type
+    public delegate void CountReadyHandler(List<string> list);
+
+    // ?????? event
+    public static event CountReadyHandler OnCountReady;
 
     //  [SerializeField]
     //   List<string> keep_list_key_animation;
@@ -26,10 +37,15 @@ public class CutsceneController_3d_cutscene : MonoBehaviour, ICountChecker
 
         OnCountReached();
 
+        OnCountReady?.Invoke(cutsceneLoader.make_copy_key);
+
         //   loop_list_string();
 
         // PlayCutscene("walking player pose 1");
     }
+
+
+
 
     public void OnCountReached()
     {
@@ -40,6 +56,8 @@ public class CutsceneController_3d_cutscene : MonoBehaviour, ICountChecker
         // ?????????????????????????????? count ???
     }
 
+    // make   void OnCount_Ready(List<string> list_string); work with list cutscene_player and list CutsceneController_3d_cutscene 
+    //
 
     void Get_component()
     {
@@ -65,7 +83,11 @@ public class CutsceneController_3d_cutscene : MonoBehaviour, ICountChecker
                     Debug.Log($"Scene ID: {scene.id}, Key: {scene.key}");
 
                 PlayCutscene(scene.key);
+              // PlayCutscene()
             }
+            
+            //_countChecker_Cutscene_Player.OnCount_Ready(cutsceneLoader.make_copy_key);
+            //add for cutscene
         }
         else
         {
@@ -93,15 +115,28 @@ public class CutsceneController_3d_cutscene : MonoBehaviour, ICountChecker
         switch (key)
         {
             case "walking player pose 1":
-                CameraFollowPlayer();
+               // CameraFollowPlayer();
                 PlayerWalk();
-
+                
                 break;
-            case "camera zoom in":
-                CameraZoomIn();
+
+            case "Rotate left":
+                Rotate_left();
                 break;
                 // ????????? ???????? key ?? JSON
         }
+    }
+
+
+    private void Rotate_left()
+    {
+        if (debug_playcutscene == true)
+        {
+            //   Debug.Log("PlayerWalk()");
+
+            Debug.Log("PlayClip_Rotate_left() ");
+        }
+
     }
 
     private void PlayerWalk()
@@ -144,3 +179,8 @@ public class CutsceneController_3d_cutscene : MonoBehaviour, ICountChecker
     // Method ?????
 }
 
+public interface ICountChecker_cutscene_player
+{
+   // void OnCount_Ready(List<string> get_count_ready); // method will call if count is max 
+    void OnCount_Ready(List<string> list_string);
+}

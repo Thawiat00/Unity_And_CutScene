@@ -6,11 +6,7 @@
         },
         {
             "id": 2,
-            "key": "camera zoom in"
-        },
-        {
-            "id": 3,
-            "key": "sound effect broken"
+            "key": "Rotate left"
         }
     ]
 }
